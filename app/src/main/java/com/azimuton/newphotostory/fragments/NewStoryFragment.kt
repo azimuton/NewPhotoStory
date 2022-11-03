@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.azimuton.newphotostory.R
 import com.azimuton.newphotostory.databinding.FragmentMainStoryBinding
 import com.azimuton.newphotostory.databinding.FragmentNewStoryBinding
+import com.bumptech.glide.Glide
 
 
 class NewStoryFragment : Fragment() {
@@ -17,9 +18,15 @@ class NewStoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentNewStoryBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Glide.with(requireContext())
+            .asGif()
+            .load(R.drawable.backnote)
+            .into(binding.ivBackNewStory)
     }
 
 

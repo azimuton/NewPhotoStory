@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/mainStoryFragment"
+        android:name="com.azimuton.newphotostory.fragments.MainStoryFragment"
+        android:label="fragment_main_story"
+        tools:layout="@layout/fragment_main_story" >
+        <action
+            android:id="@+id/action_mainStoryFragment_to_newStoryFragment"
+            app:destination="@id/newStoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newPhotoFragment"
+        android:name="com.azimuton.newphotostory.fragments.NewPhotoFragment"
+        android:label="fragment_new_photo"
+        tools:layout="@layout/fragment_new_photo" >
+        <action
+            android:id="@+id/action_newPhotoFragment_to_newStoryFragment"
+            app:destination="@id/newStoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.azimuton.newphotostory.fragments.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_mainStoryFragment"
+            app:destination="@id/mainStoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newStoryFragment"
+        android:name="com.azimuton.newphotostory.fragments.NewStoryFragment"
+        android:label="fragment_new_story"
+        tools:layout="@layout/fragment_new_story" >
+        <action
+            android:id="@+id/action_newStoryFragment_to_newPhotoFragment"
+            app:destination="@id/newPhotoFragment" />
+        <action
+            android:id="@+id/action_newStoryFragment_to_mainStoryFragment"
+            app:destination="@id/mainStoryFragment" />
+    </fragment>
+</navigation>
