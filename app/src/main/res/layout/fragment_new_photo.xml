@@ -115,7 +115,6 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_baseline_galery_24"
                 app:srcCompat="@drawable/ic_baseline_photo_24" />
 
             <TextView

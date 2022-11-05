@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.azimuton.newphotostory.MAIN
+import com.azimuton.newphotostory.R
 import com.azimuton.newphotostory.databinding.FragmentMainStoryBinding
 
 
@@ -18,6 +20,12 @@ class MainStoryFragment : Fragment() {
     ): View {
         binding = FragmentMainStoryBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.fabNewStory.setOnClickListener {
+            MAIN.navController.navigate(R.id.action_mainStoryFragment_to_newStoryFragment)
+        }
     }
 
 }

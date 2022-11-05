@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import com.azimuton.newphotostory.MAIN
 import com.azimuton.newphotostory.R
 import com.azimuton.newphotostory.databinding.FragmentMainStoryBinding
 import com.azimuton.newphotostory.databinding.FragmentNewStoryBinding
@@ -27,6 +29,20 @@ class NewStoryFragment : Fragment() {
             .asGif()
             .load(R.drawable.backnote)
             .into(binding.ivBackNewStory)
+
+        binding.llAddToStory.setOnClickListener {
+            MAIN.navController.navigate(R.id.action_newStoryFragment_to_newPhotoFragment)
+        }
+        binding.ivBackNewStory.setOnClickListener {
+            MAIN.navController.navigate(R.id.action_newStoryFragment_to_mainStoryFragment)
+        }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                MAIN.navController.navigate(R.id.action_newStoryFragment_to_mainStoryFragment)
+            }
+        }
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callback)
     }
 
 
