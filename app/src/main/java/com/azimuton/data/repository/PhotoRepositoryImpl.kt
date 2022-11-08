@@ -15,11 +15,11 @@ class PhotoRepositoryImpl(private  val photoStorageRoom: PhotoStorageRoom) : Pho
 //        photoStorageRoom.delImage()
 //    }
 
-    override fun insertPhoto(photo: Photo) {
+    override suspend fun insertPhoto(photo: Photo) {
         photoStorageRoom.insertPhoto(photoEntity = PhotoMapper().mapToEntity(photo))
     }
 
-    override fun deletePhoto(photo: Photo) {
+    override suspend fun deletePhoto(photo: Photo) {
         photoStorageRoom.deletePhoto(photoEntity = PhotoMapper().mapToEntity(photo))
     }
 

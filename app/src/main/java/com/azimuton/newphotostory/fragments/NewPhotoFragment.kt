@@ -2,28 +2,31 @@ package com.azimuton.newphotostory.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.azimuton.domain.models.Photo
 import com.azimuton.domain.usecase.InsertUseCase
 import com.azimuton.newphotostory.MAIN
 import com.azimuton.newphotostory.R
 import com.azimuton.newphotostory.databinding.FragmentNewPhotoBinding
+import com.azimuton.newphotostory.viewmodels.NewPhotoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class NewPhotoFragment : Fragment() {
     private lateinit var binding: FragmentNewPhotoBinding
-    @Inject
-    lateinit var provideInsertUseCase : InsertUseCase
+    //@Inject
+    //lateinit var provideInsertUseCase : InsertUseCase
+    private lateinit var mViewModel: NewPhotoViewModel
     private val Pick_image = 1
-    var tempImageUri = "empty"
+    private var tempImageUri = "empty"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,19 +38,23 @@ class NewPhotoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        mViewModel = ViewModelProvider(requireActivity())[NewPhotoViewModel::class.java]
+
         binding.llGalery.setOnClickListener {
             chooseImage()
         }
 
         binding.llSaveNewPhoto.setOnClickListener {
-            if (binding.etNameOfPhoto.text.isEmpty() || binding.etNameOfPhoto.text.isNotEmpty()) {
+            if (binding.etNameOfPhoto.text.isNotEmpty() || binding.etNameOfPhoto.text.isEmpty()) {
                 val title: String = binding.etNameOfPhoto.text.toString()
                 val content: String = binding.etDescOfPhoto.text.toString()
                 val imageUri = tempImageUri
                 val photo =
                     Photo(dbphototitle = title, dbphotocontent = content, dbphotoimage = imageUri)
                 Toast.makeText(requireContext(), "Your photo is added !", Toast.LENGTH_LONG).show()
-                provideInsertUseCase.photoExecute(photo)
+                //provideInsertUseCase.photoExecute(photo)
+                mViewModel.insertNewPhoto(photo)
+
                 MAIN.navController.navigate(R.id.action_newPhotoFragment_to_newStoryFragment)
 //                photoRepository.insertPhoto(photo)
 //                activity?.supportFragmentManager

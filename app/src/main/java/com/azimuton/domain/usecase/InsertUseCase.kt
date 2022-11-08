@@ -8,7 +8,7 @@ import com.azimuton.domain.repository.StoryRepository
 class InsertUseCase(private val photoRepository: PhotoRepository,
                     private val storyRepository: StoryRepository
 ) {
-    fun photoExecute(photo:Photo){
+    suspend fun photoExecute(photo:Photo){
         return  photoRepository.insertPhoto(photo = photo)
     }
     fun storyExecute(story: Story){

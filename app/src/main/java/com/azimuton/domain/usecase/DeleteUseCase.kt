@@ -8,7 +8,7 @@ import com.azimuton.domain.repository.StoryRepository
 class DeleteUseCase(private val photoRepository: PhotoRepository,
                     private val storyRepository: StoryRepository
 ) {
-    fun photoExecute(photo: Photo){
+    suspend fun photoExecute(photo: Photo){
         return  photoRepository.deletePhoto(photo = photo)
     }
     fun storyExecute(story: Story){

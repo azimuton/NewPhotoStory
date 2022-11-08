@@ -13,11 +13,11 @@ class PhotoStorageRoomImpl(private  val photoDao: PhotoDao) : PhotoStorageRoom {
 //        photoDao.delImage()
 //    }
 
-    override fun insertPhoto(photoEntity: PhotoEntity) {
+    override suspend fun insertPhoto(photoEntity: PhotoEntity) {
         photoDao.insertPhoto(photoEntity)
     }
 
-    override fun deletePhoto(photoEntity: PhotoEntity) {
+    override suspend fun deletePhoto(photoEntity: PhotoEntity) {
         photoDao.deletePhoto(photoEntity)
     }
 

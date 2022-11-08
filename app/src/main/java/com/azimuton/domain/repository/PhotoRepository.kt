@@ -7,9 +7,9 @@ interface PhotoRepository {
 
     //fun delImage()
 
-    fun insertPhoto(photo: Photo)
+    suspend fun insertPhoto(photo: Photo)
 
-    fun deletePhoto(photo: Photo)
+    suspend fun deletePhoto(photo: Photo)
 
     //fun updatePhoto(photo: Photo)
 

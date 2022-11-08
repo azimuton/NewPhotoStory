@@ -7,7 +7,7 @@ import com.azimuton.domain.repository.StoryRepository
 
 class GetAllUseCase(private val photoRepository: PhotoRepository,
                     private val storyRepository: StoryRepository) {
-    fun photoExecute():List<Photo>{
+     fun photoExecute():List<Photo>{
         return  photoRepository.getAll()
     }
     fun storyExecute():List<Story>{

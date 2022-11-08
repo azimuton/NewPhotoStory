@@ -7,9 +7,9 @@ interface PhotoStorageRoom {
 
 //    fun delImage()
 
-    fun insertPhoto(photoEntity: PhotoEntity)
+   suspend fun insertPhoto(photoEntity: PhotoEntity)
 
-    fun deletePhoto(photoEntity: PhotoEntity)
+    suspend fun deletePhoto(photoEntity: PhotoEntity)
 
 //    fun updatePhoto(photoEntity: PhotoEntity)
 //

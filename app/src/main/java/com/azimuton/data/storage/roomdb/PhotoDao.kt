@@ -12,10 +12,10 @@ interface PhotoDao {
 //    fun delImage()
 
     @Insert
-    fun insertPhoto(photoEntity: PhotoEntity)
+    suspend fun insertPhoto(photoEntity: PhotoEntity)
 
     @Delete
-    fun deletePhoto(photoEntity: PhotoEntity)
+    suspend fun deletePhoto(photoEntity: PhotoEntity)
 
 //    @Update
 //    fun updatePhoto(photoEntity: PhotoEntity)
