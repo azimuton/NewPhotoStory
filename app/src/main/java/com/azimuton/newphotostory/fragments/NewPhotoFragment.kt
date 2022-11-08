@@ -14,10 +14,14 @@ import com.azimuton.domain.usecase.InsertUseCase
 import com.azimuton.newphotostory.MAIN
 import com.azimuton.newphotostory.R
 import com.azimuton.newphotostory.databinding.FragmentNewPhotoBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class NewPhotoFragment : Fragment() {
     private lateinit var binding: FragmentNewPhotoBinding
-    lateinit var insertUseCase : InsertUseCase
+    @Inject
+    lateinit var provideInsertUseCase : InsertUseCase
     private val Pick_image = 1
     var tempImageUri = "empty"
 
@@ -43,7 +47,7 @@ class NewPhotoFragment : Fragment() {
                 val photo =
                     Photo(dbphototitle = title, dbphotocontent = content, dbphotoimage = imageUri)
                 Toast.makeText(requireContext(), "Your photo is added !", Toast.LENGTH_LONG).show()
-                insertUseCase.photoExecute(photo)
+                provideInsertUseCase.photoExecute(photo)
                 MAIN.navController.navigate(R.id.action_newPhotoFragment_to_newStoryFragment)
 //                photoRepository.insertPhoto(photo)
 //                activity?.supportFragmentManager

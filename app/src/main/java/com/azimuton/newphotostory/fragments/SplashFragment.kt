@@ -9,10 +9,11 @@ import android.view.ViewGroup
 import com.azimuton.newphotostory.MAIN
 import com.azimuton.newphotostory.R
 import com.azimuton.newphotostory.databinding.FragmentSplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-
+@AndroidEntryPoint
 class SplashFragment : Fragment(), CoroutineScope {
     private lateinit var binding: FragmentSplashBinding
     private val job = Job()

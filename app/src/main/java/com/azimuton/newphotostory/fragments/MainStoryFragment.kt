@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import com.azimuton.newphotostory.MAIN
 import com.azimuton.newphotostory.R
 import com.azimuton.newphotostory.databinding.FragmentMainStoryBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainStoryFragment : Fragment() {
 
     private lateinit var binding: FragmentMainStoryBinding

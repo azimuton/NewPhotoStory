@@ -19,18 +19,22 @@ import com.azimuton.newphotostory.adapters.NewStoryAdapter
 import com.azimuton.newphotostory.databinding.FragmentMainStoryBinding
 import com.azimuton.newphotostory.databinding.FragmentNewStoryBinding
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-
+@AndroidEntryPoint
 class NewStoryFragment : Fragment(), NewStoryAdapter.ViewHolder.ItemCallback {
     private lateinit var binding: FragmentNewStoryBinding
     lateinit var photoList: ArrayList<Photo>
     lateinit var adapterphoto : NewStoryAdapter
-    lateinit var getAllUseCase : GetAllUseCase
-    lateinit var deleteUseCase : DeleteUseCase
+    @Inject
+    lateinit var provideGetAllUseCase : GetAllUseCase
+    @Inject
+    lateinit var provideDeleteUseCase : DeleteUseCase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,7 +77,7 @@ class NewStoryFragment : Fragment(), NewStoryAdapter.ViewHolder.ItemCallback {
     }
     private fun getData() {
 //        CoroutineScope(Dispatchers.IO).launch {
-            val fromDb: List<Photo> = getAllUseCase.photoExecute()
+            val fromDb: List<Photo> = provideGetAllUseCase.photoExecute()
             photoList.clear()
             photoList.addAll(fromDb)
         //}
@@ -87,7 +91,8 @@ class NewStoryFragment : Fragment(), NewStoryAdapter.ViewHolder.ItemCallback {
             .setPositiveButton("Ok") { dialog, _ ->
                 val photo = photoList[index]
 //                CoroutineScope(Dispatchers.IO).launch {
-                    deleteUseCase.photoExecute(photo)
+
+                    provideDeleteUseCase.photoExecute(photo)
                 //}
                 getData()
                 adapterphoto.notifyDataSetChanged()
